@@ -1,7 +1,29 @@
+import { useState, useEffect } from "react";
 
+const api_for_images = "http://localhost:3000/imgs/posts/";
+const api_endpoint_base = "http://localhost:3000/posts/";
 
 function App() {
 
+  const [posts, setPosts] = useState([]);
+
+  //logic 
+  function fetchData(url) {
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+
+        setPosts(data);
+      });
+  }
+
+  //useEffect for load the data
+  useEffect(() => {
+    fetchData(api_endpoint_base);
+  }, []);
+
+  //console.log(posts[0].image);
+  //template
   return (
     <>
       <header className="bg-warning py-3">
@@ -23,11 +45,17 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="w-15"><img src="vite.svg" alt="image" /></td>
-                  <td>crackers alla barbabietola</td>
-                  <td className="w-50">R1C3</td>
-                </tr>
+
+                {
+                  posts.map(post => (
+                    <tr key={post.slug}>
+                      <td className="w-15"><img src={api_for_images + post.image} alt="image" /></td>
+                      <td>{post.title}</td>
+                      <td className="w-50">{post.content}</td>
+                    </tr>
+                  ))
+                }
+
               </tbody>
             </table>
           </div>
