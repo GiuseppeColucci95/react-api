@@ -4,10 +4,22 @@
   width: 5%;
 }
 
-.w-20 {
-  width: 20%;
+.w-40 {
+  width: 35%;
+}
+
+.w-55 {
+  width: 55%;
 }
 
 img {
-  width: 80%;
+  width: 100%;
+}
+
+.fs-8 {
+  font-size: 0.9rem;
+}
+
+.color-warning {
+  color: rgb(255, 174, 0);
 }

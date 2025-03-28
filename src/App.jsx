@@ -5,6 +5,7 @@ const api_endpoint_base = "http://localhost:3000/posts/";
 
 function App() {
 
+  //use state variables
   const [posts, setPosts] = useState([]);
 
   //logic 
@@ -54,8 +55,7 @@ function App() {
               <thead>
                 <tr>
                   <th scope="col">Image</th>
-                  <th scope="col">Title</th>
-                  <th scope="col">Content</th>
+                  <th scope="col">Description</th>
                   <th scope="col">Tools</th>
                 </tr>
               </thead>
@@ -64,13 +64,13 @@ function App() {
                 {
                   posts.map(post => (
                     <tr key={post.slug}>
-                      <td className="w-20">
-                        <img src={api_for_images + post.image} alt={post.title + " image"} />
+                      <td className="w-40"><img className="border rounded-4 border-1 border-dark" src={api_for_images + post.image} alt={post.title + " image"} /></td>
+                      <td className="w-55">
+                        <h4>{post.title}</h4>
+                        <p className="fs-8">{post.content}</p>
                       </td>
-                      <td>{post.title}</td>
-                      <td className="w-50">{post.content}</td>
                       <td className="w-5 text-center">
-                        <button className="btn" onClick={() => handleDelete(post)}><i className="fa-solid fa-trash-can"></i>
+                        <button className="btn btn-danger" onClick={() => handleDelete(post)}><i className=" fa-solid fa-trash-can"></i>
                         </button>
                       </td>
                     </tr>
