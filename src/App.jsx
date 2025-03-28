@@ -17,6 +17,20 @@ function App() {
       });
   }
 
+  function fetchDelete(url, post) {
+    fetch(url, { method: 'DELETE' })
+      .then(res => {
+        console.log(res);
+        fetchData(api_endpoint_base);
+      })
+  }
+
+  function handleDelete(post) {
+    console.log("You clicked delete!", post.slug);
+
+    fetchDelete(api_endpoint_base + post.slug);
+  }
+
   //useEffect for load the data
   useEffect(() => {
     fetchData(api_endpoint_base);
@@ -42,6 +56,7 @@ function App() {
                   <th scope="col">Image</th>
                   <th scope="col">Title</th>
                   <th scope="col">Content</th>
+                  <th scope="col">Tools</th>
                 </tr>
               </thead>
               <tbody>
@@ -49,9 +64,15 @@ function App() {
                 {
                   posts.map(post => (
                     <tr key={post.slug}>
-                      <td className="w-20"><img src={api_for_images + post.image} alt={post.title + " image"} /></td>
+                      <td className="w-20">
+                        <img src={api_for_images + post.image} alt={post.title + " image"} />
+                      </td>
                       <td>{post.title}</td>
                       <td className="w-50">{post.content}</td>
+                      <td className="w-5 text-center">
+                        <button className="btn" onClick={() => handleDelete(post)}><i className="fa-solid fa-trash-can"></i>
+                        </button>
+                      </td>
                     </tr>
                   ))
                 }
@@ -63,7 +84,7 @@ function App() {
         </div>
 
 
-      </section>
+      </section >
     </>
   )
 }

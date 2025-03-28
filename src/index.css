@@ -1,5 +1,9 @@
 @import 'bootstrap';
 
+.w-5 {
+  width: 5%;
+}
+
 .w-20 {
   width: 20%;
 }
