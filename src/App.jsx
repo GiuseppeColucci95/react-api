@@ -49,7 +49,7 @@ function App() {
                 {
                   posts.map(post => (
                     <tr key={post.slug}>
-                      <td className="w-15"><img src={api_for_images + post.image} alt="image" /></td>
+                      <td className="w-20"><img src={api_for_images + post.image} alt={post.title + " image"} /></td>
                       <td>{post.title}</td>
                       <td className="w-50">{post.content}</td>
                     </tr>
